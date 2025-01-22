@@ -8,11 +8,14 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 
+import { FaWeixin } from "react-icons/fa";
+
+
 export const Social = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
 
-  const onClick = (provider: "google" | "github") => {
+  const onClick = (provider: "google" | "github" | "wechat") => {
     signIn(provider, {
       callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
@@ -35,6 +38,14 @@ export const Social = () => {
         onClick={() => onClick("github")}
       >
         <FaGithub className="h-5 w-5" />
+      </Button>
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => onClick("wechat")}
+      >
+        <FaWeixin className="h-5 w-5 text-green-600" />
       </Button>
     </div>
   );
